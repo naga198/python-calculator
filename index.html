@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025: The Year of Acceleration - Infographic</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background:
+                radial-gradient(circle at top, rgba(6, 182, 212, 0.12), transparent 30%),
+                linear-gradient(180deg, #020617 0%, #0f172a 25%, #111827 100%);
+            color: #f8fafc;
+        }
+
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .hero-image {
+            background-image:
+                linear-gradient(180deg, rgba(2, 6, 23, 0.35) 0%, rgba(2, 6, 23, 0.88) 100%),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: 350px;
+            max-height: 400px;
+            margin: 0 auto;
+        }
+
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 4px;
+            background: linear-gradient(to bottom, #06b6d4, #ec4899, #8b5cf6);
+            z-index: 0;
+        }
+
+        .glass-card {
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 20px 60px rgba(2, 6, 23, 0.35);
+        }
+
+        .image-tile {
+            min-height: 220px;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <header class="relative w-full px-4 md:px-8 py-20 text-center border-b border-slate-800 hero-image">
+        <div class="max-w-5xl mx-auto">
+            <p class="text-cyan-300 uppercase tracking-[0.45em] text-xs md:text-sm mb-4">Interactive 2025 World Brief</p>
+            <h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-pink-500 mb-4 tracking-wider">2025</h1>
+            <h2 class="text-2xl md:text-3xl text-slate-200 font-light mb-8">THE YEAR OF ACCELERATION</h2>
+            <p class="max-w-3xl mx-auto text-lg text-slate-300 leading-relaxed">
+                From AI governance and quantum breakthroughs to lunar missions and climate shocks, 2025 compressed decades of disruption into a single year. This report maps the 30 events that defined the global mood.
+            </p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12">
+        <section class="mb-10">
+            <div class="flex items-end justify-between gap-4 mb-5">
+                <div>
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-2 border-l-4 border-cyan-400 pl-4">Visual Pulse</h3>
+                    <p class="text-slate-400">A quick image strip for the year's dominant themes: AI, space, climate, and resilience.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                <article class="glass-card rounded-2xl overflow-hidden">
+                    <div class="image-tile" style="background-image:url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=80')"></div>
+                    <div class="p-5">
+                        <p class="text-xs uppercase tracking-[0.3em] text-cyan-300 mb-2">Artificial Intelligence</p>
+                        <h4 class="text-lg text-white mb-2">Models moved from tools to policy issues</h4>
+                        <p class="text-sm text-slate-400">The AI charter, deepfake controls, and GPT-scale systems pushed governance into the mainstream.</p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden">
+                    <div class="image-tile" style="background-image:url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80')"></div>
+                    <div class="p-5">
+                        <p class="text-xs uppercase tracking-[0.3em] text-indigo-300 mb-2">Space Race</p>
+                        <h4 class="text-lg text-white mb-2">Exploration returned to the geopolitical center</h4>
+                        <p class="text-sm text-slate-400">Crewed lunar ambitions, Mars cargo planning, and station expansion kept orbit strategically relevant.</p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden">
+                    <div class="image-tile" style="background-image:url('https://images.unsplash.com/photo-1611273426858-4506f0d3c1f3?auto=format&fit=crop&w=900&q=80')"></div>
+                    <div class="p-5">
+                        <p class="text-xs uppercase tracking-[0.3em] text-green-300 mb-2">Climate Pressure</p>
+                        <h4 class="text-lg text-white mb-2">Environmental events became system-wide shocks</h4>
+                        <p class="text-sm text-slate-400">Heatwaves, water stress, and deforestation treaties showed climate risk as infrastructure risk.</p>
+                    </div>
+                </article>
+
+                <article class="glass-card rounded-2xl overflow-hidden">
+                    <div class="image-tile" style="background-image:url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80')"></div>
+                    <div class="p-5">
+                        <p class="text-xs uppercase tracking-[0.3em] text-pink-300 mb-2">Human Resilience</p>
+                        <h4 class="text-lg text-white mb-2">Health and science still produced the best surprises</h4>
+                        <p class="text-sm text-slate-400">Fusion, vaccines, and CRISPR-scale milestones counterbalanced a volatile geopolitical backdrop.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <section class="lg:col-span-7 order-2 lg:order-1">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-2 border-l-4 border-cyan-400 pl-4">Chronicle of Chaos & Progress</h3>
+                    <p class="text-slate-400">A chronological journey through the 30 defining moments of 2025.</p>
+                </div>
+
+                <div class="relative timeline-line pl-4 md:pl-0" id="timeline-container"></div>
+            </section>
+
+            <aside class="lg:col-span-5 order-1 lg:order-2">
+                <div class="sticky top-8 space-y-8">
+                    <div class="glass-card rounded-xl p-6">
+                        <h3 class="text-xl font-bold text-pink-500 mb-2">Data Overview</h3>
+                        <p class="text-sm text-slate-300 mb-4">
+                            The year clustered around technological regulation, climate volatility, and large-scale institutional responses.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="bg-slate-900/70 p-4 rounded-lg text-center border border-slate-700">
+                                <span class="block text-3xl font-bold text-cyan-400">14</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest">Tech Events</span>
+                            </div>
+                            <div class="bg-slate-900/70 p-4 rounded-lg text-center border border-slate-700">
+                                <span class="block text-3xl font-bold text-pink-500">1.5°C</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-widest">Avg Temp Rise</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-white mb-2">Events by Category</h4>
+                        <p class="text-xs text-slate-400 mb-4">Distribution of the 30 major events across key sectors.</p>
+                        <div class="chart-container h-64">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-white mb-2">Highest Impact Events</h4>
+                        <p class="text-xs text-slate-400 mb-4">Ranked by the Global Impact Index (0-100).</p>
+                        <div class="chart-container h-64">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 overflow-hidden">
+                        <img
+                            src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1200&q=80"
+                            alt="Earth from space"
+                            class="w-full h-52 object-cover rounded-xl mb-4"
+                        >
+                        <h4 class="text-lg font-semibold text-white mb-2">The View From Orbit</h4>
+                        <p class="text-xs text-slate-400">Space remained both a theater of prestige and a platform for infrastructure, research, and long-term strategy.</p>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-white mb-2">Global Volatility Index</h4>
+                        <p class="text-xs text-slate-400 mb-4">Tracking monthly instability based on event severity.</p>
+                        <div class="chart-container h-48">
+                            <canvas id="volatilityChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6">
+                        <h4 class="text-lg font-semibold text-white mb-2">Impact vs. Surprise Factor</h4>
+                        <p class="text-xs text-slate-400 mb-4">Analyzing how unexpected events were relative to their global consequence.</p>
+                        <div id="scatterPlot" class="w-full h-80 rounded-lg overflow-hidden"></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="bg-slate-950/80 border-t border-slate-800 py-12 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl brand-font text-slate-500 mb-4">2026 AWAITS</h3>
+            <p class="text-slate-400 max-w-xl mx-auto">
+                The systems built in 2025 suggest a decade defined by contested automation, climate adaptation, and new economic infrastructure.
+            </p>
+            <div class="mt-8 text-slate-700 text-sm">
+                Generated with Canvas Infographics Engine • No SVG Used • No Mermaid JS
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const events2025 = [
+            { id: 1, date: "Jan 20", title: "US Presidential Inauguration", category: "Politics", impact: 90, surprise: 10, desc: "Following a contentious 2024 election, the inauguration sets a new tone for US foreign policy." },
+            { id: 2, date: "Feb 12", title: "Super Bowl LIX in New Orleans", category: "Culture", impact: 40, surprise: 5, desc: "A record-breaking 120 million viewers tune in for the halftime show featuring holographics." },
+            { id: 3, date: "Mar 05", title: "GPT-5 Model Release", category: "Tech", impact: 95, surprise: 60, desc: "OpenAI releases GPT-5, achieving near-AGI capabilities in reasoning and code generation." },
+            { id: 4, date: "Mar 15", title: "EU AI Act Full Enforcement", category: "Politics", impact: 80, surprise: 20, desc: "Strict penalties begin for non-compliant AI models in Europe, reshaping the tech landscape." },
+            { id: 5, date: "Apr 03", title: "Artemis II Launch", category: "Space", impact: 85, surprise: 15, desc: "NASA successfully launches the first crewed mission to orbit the Moon in over 50 years." },
+            { id: 6, date: "Apr 22", title: "Global Carbon Tax Accord", category: "Environment", impact: 88, surprise: 70, desc: "Signed on Earth Day, major economies agree to a unified floor for carbon pricing." },
+            { id: 7, date: "May 10", title: "Google Quantum Breakthrough", category: "Tech", impact: 92, surprise: 80, desc: "Google announces the first commercially viable error-corrected quantum qubit array." },
+            { id: 8, date: "May 28", title: "WHO Pandemic Treaty", category: "Health", impact: 75, surprise: 30, desc: "Member states ratify a legally binding agreement to coordinate future pandemic responses." },
+            { id: 9, date: "Jun 15", title: "Digital Euro Pilot Expansion", category: "Economics", impact: 70, surprise: 40, desc: "The ECB rolls out the Digital Euro to retail banks across France and Germany." },
+            { id: 10, date: "Jun 21", title: "Global Heatwave Record", category: "Environment", impact: 85, surprise: 10, desc: "The Northern Hemisphere experiences the hottest solstice on record, triggering grid failures." },
+            { id: 11, date: "Jul 01", title: "Apple Vision Pro 2 Launch", category: "Tech", impact: 65, surprise: 20, desc: "A lighter, cheaper consumer version of the headset accelerates AR adoption." },
+            { id: 12, date: "Jul 15", title: "Women's Euro 2025 Finals", category: "Sports", impact: 50, surprise: 10, desc: "Switzerland hosts the final, breaking attendance records for women's sports in Europe." },
+            { id: 13, date: "Aug 08", title: "Fusion Energy Net Gain Pilot", category: "Science", impact: 98, surprise: 90, desc: "A private firm in the US demonstrates sustained net energy gain for 10 minutes." },
+            { id: 14, date: "Aug 22", title: "The Great Cloud Outage", category: "Tech", impact: 85, surprise: 85, desc: "A massive solar flare disrupts data centers globally, causing 12 hours of internet blackouts." },
+            { id: 15, date: "Sep 05", title: "Universal Flu Vaccine Approval", category: "Health", impact: 80, surprise: 50, desc: "FDA approves the first mRNA vaccine effective against all major influenza strains." },
+            { id: 16, date: "Sep 15", title: "German Federal Election", category: "Politics", impact: 75, surprise: 40, desc: "A coalition shift in Germany alters the EU's stance on defense spending." },
+            { id: 17, date: "Sep 28", title: "SpaceX Starship Mars Cargo", category: "Space", impact: 70, surprise: 60, desc: "The first uncrewed cargo mission destined for Mars orbit is launched." },
+            { id: 18, date: "Oct 01", title: "India Economy Milestone", category: "Economics", impact: 75, surprise: 10, desc: "India officially surpasses Japan to become the world's 4th largest economy." },
+            { id: 19, date: "Oct 20", title: "Canadian Federal Election", category: "Politics", impact: 60, surprise: 30, desc: "Canadians head to the polls in a pivotal election focusing on housing and climate." },
+            { id: 20, date: "Nov 05", title: "Neuralink Mass Trials", category: "Tech", impact: 88, surprise: 65, desc: "Regulatory approval granted for widespread clinical trials of brain-computer interfaces." },
+            { id: 21, date: "Nov 11", title: "COP30 Amazon Treaty", category: "Environment", impact: 82, surprise: 40, desc: "Hosted in Brazil, nations sign a definitive pact to end deforestation by 2028." },
+            { id: 22, date: "Nov 25", title: "Deepfake Regulation Summit", category: "Politics", impact: 65, surprise: 20, desc: "UN hosts emergency summit to address AI misinformation affecting global elections." },
+            { id: 23, date: "Dec 01", title: "China Space Station Expansion", category: "Space", impact: 60, surprise: 15, desc: "China completes the second phase of Tiangong, adding international research modules." },
+            { id: 24, date: "Dec 10", title: "Nobel for CRISPR Therapy", category: "Science", impact: 70, surprise: 5, desc: "Nobel Prize awarded for the first widespread cure of sickle cell disease via CRISPR." },
+            { id: 25, date: "Dec 15", title: "Solid State Battery EV", category: "Tech", impact: 78, surprise: 50, desc: "Toyota launches the first mass-market EV with a 1200km range solid-state battery." },
+            { id: 26, date: "Dec 20", title: "Global Water Crisis Summit", category: "Environment", impact: 75, surprise: 30, desc: "Emergency talks held in Cairo regarding water scarcity in the MENA region." },
+            { id: 27, date: "Dec 25", title: "Metaverse Retail Boom", category: "Economics", impact: 55, surprise: 40, desc: "Virtual holiday shopping hits record highs, surpassing $50B in digital goods." },
+            { id: 28, date: "Dec 28", title: "Antarctic Ice Shelf Break", category: "Environment", impact: 90, surprise: 20, desc: "A massive section of the Thwaites Glacier fractures, accelerating sea-level rise fears." },
+            { id: 29, date: "Dec 30", title: "6G Network Standards Set", category: "Tech", impact: 60, surprise: 10, desc: "ITU finalizes the technical standards for 6G, paving the way for 2030 rollout." },
+            { id: 30, date: "Dec 31", title: "New Year's AI Address", category: "Culture", impact: 50, surprise: 90, desc: "The first UN address delivered simultaneously in 100 languages by real-time AI translation." }
+        ];
+
+        function wrapLabel(label) {
+            if (label.length <= 16) {
+                return label;
+            }
+
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + ' ' + words[i]).length <= 16) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+
+            lines.push(currentLine);
+            return lines;
+        }
+
+        const tooltipPlugin = {
+            callbacks: {
+                title(tooltipItems) {
+                    const item = tooltipItems[0];
+                    const label = item.chart.data.labels[item.dataIndex];
+                    return Array.isArray(label) ? label.join(' ') : label;
+                }
+            }
+        };
+
+        const timelineContainer = document.getElementById('timeline-container');
+
+        const categoryIcons = {
+            Politics: '🗳️',
+            Tech: '🤖',
+            Environment: '🌍',
+            Space: '🚀',
+            Economics: '💸',
+            Health: '💊',
+            Science: '🧬',
+            Culture: '🎨',
+            Sports: '🏆'
+        };
+
+        const categoryColors = {
+            Politics: 'border-purple-500 text-purple-400',
+            Tech: 'border-cyan-400 text-cyan-400',
+            Environment: 'border-green-500 text-green-400',
+            Space: 'border-indigo-500 text-indigo-400',
+            Economics: 'border-yellow-500 text-yellow-400',
+            Health: 'border-red-400 text-red-400',
+            Science: 'border-blue-400 text-blue-400',
+            Culture: 'border-pink-500 text-pink-400',
+            Sports: 'border-orange-500 text-orange-400'
+        };
+
+        events2025.forEach((evt) => {
+            const colorClass = categoryColors[evt.category] || 'border-slate-500 text-slate-400';
+            const html = `
+                <div class="relative pl-12 py-6 group">
+                    <div class="absolute left-[2px] top-6 w-10 h-10 rounded-full bg-slate-900 border-2 ${colorClass.split(' ')[0]} flex items-center justify-center z-10 shadow-[0_0_10px_rgba(0,0,0,0.5)] text-lg">
+                        ${categoryIcons[evt.category] || '📅'}
+                    </div>
+                    <div class="glass-card rounded-xl p-6 transition-all duration-300 hover:bg-slate-900/80 hover:scale-[1.01] hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-2">
+                            <span class="text-xs font-bold uppercase tracking-wider ${colorClass.split(' ')[1]}">${evt.category}</span>
+                            <span class="text-sm text-slate-400 font-mono bg-slate-950 px-2 py-1 rounded">${evt.date}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 leading-tight">${evt.title}</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">${evt.desc}</p>
+                        <div class="mt-4 flex items-center gap-2">
+                            <span class="text-[10px] text-slate-500 uppercase">Impact</span>
+                            <div class="h-1.5 flex-grow bg-slate-700 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-cyan-500 to-pink-500" style="width: ${evt.impact}%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            timelineContainer.innerHTML += html;
+        });
+
+        const categories = {};
+        const monthlyVolatility = new Array(12).fill(0);
+
+        events2025.forEach((eventItem) => {
+            categories[eventItem.category] = (categories[eventItem.category] || 0) + 1;
+            const monthIndex = new Date(eventItem.date + ', 2025').getMonth();
+            monthlyVolatility[monthIndex] += eventItem.impact / 10;
+        });
+
+        const top5Impact = [...events2025].sort((a, b) => b.impact - a.impact).slice(0, 5);
+
+        new Chart(document.getElementById('categoryChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(categories).map(wrapLabel),
+                datasets: [{
+                    data: Object.values(categories),
+                    backgroundColor: ['#06b6d4', '#ec4899', '#8b5cf6', '#eab308', '#22c55e', '#ef4444', '#3b82f6', '#f97316', '#64748b'],
+                    borderColor: '#1e293b',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { color: '#cbd5e1', font: { size: 10 } } },
+                    tooltip: tooltipPlugin
+                }
+            }
+        });
+
+        new Chart(document.getElementById('impactChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: top5Impact.map((eventItem) => wrapLabel(eventItem.title)),
+                datasets: [{
+                    label: 'Global Impact Score',
+                    data: top5Impact.map((eventItem) => eventItem.impact),
+                    backgroundColor: '#ec4899',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+                    y: { grid: { display: false }, ticks: { color: '#e2e8f0', font: { size: 11 } } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: tooltipPlugin
+                }
+            }
+        });
+
+        new Chart(document.getElementById('volatilityChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Instability Index',
+                    data: monthlyVolatility,
+                    borderColor: '#06b6d4',
+                    backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { grid: { color: '#334155' }, ticks: { color: '#94a3b8' } },
+                    x: { grid: { display: false }, ticks: { color: '#94a3b8' } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: tooltipPlugin
+                }
+            }
+        });
+
+        Plotly.newPlot('scatterPlot', [{
+            x: events2025.map((eventItem) => eventItem.surprise),
+            y: events2025.map((eventItem) => eventItem.impact),
+            mode: 'markers',
+            type: 'scatter',
+            text: events2025.map((eventItem) => eventItem.title),
+            marker: {
+                size: events2025.map((eventItem) => eventItem.impact / 4),
+                color: events2025.map((eventItem) => {
+                    if (eventItem.category === 'Tech') return '#06b6d4';
+                    if (eventItem.category === 'Environment') return '#22c55e';
+                    if (eventItem.category === 'Politics') return '#8b5cf6';
+                    return '#ec4899';
+                }),
+                opacity: 0.8,
+                line: { color: 'white', width: 1 }
+            }
+        }], {
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            plot_bgcolor: 'rgba(0,0,0,0)',
+            margin: { l: 40, r: 20, t: 20, b: 40 },
+            xaxis: {
+                title: { text: 'Surprise Factor (0-100)', font: { color: '#94a3b8', size: 10 } },
+                gridcolor: '#334155',
+                tickfont: { color: '#94a3b8' }
+            },
+            yaxis: {
+                title: { text: 'Global Impact (0-100)', font: { color: '#94a3b8', size: 10 } },
+                gridcolor: '#334155',
+                tickfont: { color: '#94a3b8' }
+            },
+            showlegend: false
+        }, {
+            responsive: true,
+            displayModeBar: false
+        });
+    </script>
+</body>
+</html>
