@@ -715,6 +715,32 @@
             font-size: 0.85rem;
         }
 
+        .company-cell {
+            min-width: 300px;
+        }
+
+        .company-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .company-mark {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            border-radius: 16px;
+            object-fit: cover;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(216, 208, 195, 0.88);
+            box-shadow: 0 12px 28px rgba(27, 23, 18, 0.08);
+        }
+
+        .company-copy {
+            display: grid;
+            gap: 4px;
+        }
+
         .company-cell strong {
             display: block;
             font-size: 0.98rem;
@@ -1161,6 +1187,16 @@
                 min-height: 188px;
             }
 
+            .company-cell {
+                min-width: 240px;
+            }
+
+            .company-mark {
+                width: 44px;
+                height: 44px;
+                border-radius: 14px;
+            }
+
             .device-nav {
                 flex-wrap: wrap;
             }
@@ -1525,6 +1561,28 @@
             Conglomerate: imageLibrary.skyline
         };
 
+        const sectorMarkPalette = {
+            Finance: ["#8c6239", "#dec3a4"],
+            Telecom: ["#456785", "#bdd0e8"],
+            "IT Services": ["#38576d", "#9ec4dd"],
+            Energy: ["#5d6738", "#ced8aa"],
+            Construction: ["#7f6140", "#d7c0a4"],
+            FMCG: ["#7b5b45", "#e5cbb0"],
+            "FMCG/Tobacco": ["#7b5b45", "#e5cbb0"],
+            Automobile: ["#556152", "#c6d0c0"],
+            Pharma: ["#4a6c71", "#c4dfe3"],
+            Cement: ["#6e6c63", "#d6d3ca"],
+            Jewellery: ["#8d6f3f", "#f0ddb3"],
+            Logistics: ["#5f5d84", "#c6c4e9"],
+            Utilities: ["#507259", "#c6dec8"],
+            Aerospace: ["#4f627f", "#cad7ea"],
+            Defence: ["#4f627f", "#cad7ea"],
+            Conglomerate: ["#5e5b4f", "#d8d4c9"],
+            Metals: ["#5e676e", "#d2d8de"]
+        };
+
+        const companyMarkCache = new Map();
+
         const currencyFormatter = new Intl.NumberFormat("en-IN", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
@@ -1592,6 +1650,38 @@
             return sectorImageMap[sector] || imageLibrary.skyline;
         }
 
+        function getMarkPalette(sector) {
+            return sectorMarkPalette[sector] || ["#5e5b4f", "#d8d4c9"];
+        }
+
+        function createCompanyMark(stock) {
+            if (companyMarkCache.has(stock.symbol)) {
+                return companyMarkCache.get(stock.symbol);
+            }
+
+            const [start, end] = getMarkPalette(stock.sector);
+            const monogram = stock.symbol.replace(/[^A-Z]/g, "").slice(0, 4) || stock.name.slice(0, 2).toUpperCase();
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="${stock.name}">
+                    <defs>
+                        <linearGradient id="grad" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0%" stop-color="${start}" />
+                            <stop offset="100%" stop-color="${end}" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="96" height="96" rx="26" fill="url(#grad)" />
+                    <circle cx="74" cy="24" r="16" fill="rgba(255,255,255,0.18)" />
+                    <path d="M12 66 C26 50, 36 44, 52 42 S74 28, 84 16" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="4" stroke-linecap="round" />
+                    <text x="16" y="60" fill="#fffaf1" font-family="Arial, sans-serif" font-size="${monogram.length > 3 ? 22 : 28}" font-weight="700" letter-spacing="1">${monogram}</text>
+                    <text x="16" y="78" fill="rgba(255,250,241,0.82)" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1.5">${stock.sector.slice(0, 8).toUpperCase()}</text>
+                </svg>
+            `;
+
+            const uri = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+            companyMarkCache.set(stock.symbol, uri);
+            return uri;
+        }
+
         function setText(id, value) {
             const element = document.getElementById(id);
 
@@ -1624,8 +1714,13 @@
                     <tr>
                         <td class="row-rank">${String(index + 1).padStart(2, "0")}</td>
                         <td class="company-cell">
-                            <strong>${stock.name}</strong>
-                            <span>${stock.sector}</span>
+                            <div class="company-meta">
+                                <img class="company-mark" src="${createCompanyMark(stock)}" alt="${stock.name} brand mark">
+                                <div class="company-copy">
+                                    <strong>${stock.name}</strong>
+                                    <span>${stock.sector}</span>
+                                </div>
+                            </div>
                         </td>
                         <td><span class="symbol-pill">${stock.symbol}</span></td>
                         <td class="price-cell">${formatPrice(stock.price)}</td>
