@@ -64,6 +64,11 @@
             text-decoration: none;
         }
 
+        img {
+            display: block;
+            width: 100%;
+        }
+
         .site-shell {
             width: min(1240px, calc(100vw - 40px));
             margin: 0 auto;
@@ -313,7 +318,8 @@
             aspect-ratio: 1.28;
             border-radius: 22px;
             background:
-                linear-gradient(180deg, rgba(237, 244, 248, 0.95) 0%, rgba(199, 221, 234, 0.88) 34%, rgba(168, 182, 148, 0.92) 35%, rgba(134, 154, 96, 0.96) 100%);
+                linear-gradient(180deg, rgba(231, 238, 244, 0.42) 0%, rgba(183, 203, 217, 0.34) 30%, rgba(113, 133, 82, 0.62) 100%),
+                url("https://images.unsplash.com/photo-1659039254844-f9eee10eeeab?auto=format&fit=crop&fm=jpg&q=80&w=1600") center/cover no-repeat;
         }
 
         .screen::before {
@@ -470,6 +476,80 @@
             margin: 6px 0 0;
             color: var(--muted);
             font-size: 0.88rem;
+        }
+
+        .story-strip {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) repeat(2, minmax(0, 0.88fr));
+            gap: 18px;
+            margin: 0 0 76px;
+        }
+
+        .story-tile {
+            position: relative;
+            overflow: hidden;
+            min-height: 248px;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(216, 208, 195, 0.85);
+            box-shadow: 0 22px 54px rgba(27, 23, 18, 0.08);
+            isolation: isolate;
+        }
+
+        .story-tile--large {
+            min-height: 284px;
+        }
+
+        .story-tile img {
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.03);
+        }
+
+        .story-tile::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20, 17, 13, 0.06) 0%, rgba(20, 17, 13, 0.7) 100%);
+        }
+
+        .story-content {
+            position: absolute;
+            inset: auto 0 0;
+            z-index: 1;
+            padding: 22px 24px 24px;
+            color: #fbf8f2;
+        }
+
+        .story-content span {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            backdrop-filter: blur(14px);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .story-content h3 {
+            margin: 16px 0 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2.2rem;
+            line-height: 0.92;
+            letter-spacing: -0.04em;
+            max-width: 9ch;
+        }
+
+        .story-content p {
+            margin: 12px 0 0;
+            max-width: 24rem;
+            color: rgba(251, 248, 242, 0.86);
+            line-height: 1.65;
+            font-size: 0.92rem;
         }
 
         .metric-band {
@@ -706,6 +786,57 @@
             line-height: 1.7;
         }
 
+        .feature-image {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            min-height: 220px;
+            border-radius: 24px;
+            background: rgba(20, 17, 13, 0.08);
+        }
+
+        .feature-image img {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20, 17, 13, 0.04) 8%, rgba(20, 17, 13, 0.7) 100%);
+        }
+
+        .feature-image-copy {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+            z-index: 1;
+            color: #fbf8f2;
+        }
+
+        .feature-image-copy span {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .feature-image-copy strong {
+            display: block;
+            margin-top: 12px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2rem;
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+        }
+
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -857,6 +988,19 @@
             font-size: 0.92rem;
         }
 
+        .sector-thumb {
+            overflow: hidden;
+            margin-top: 18px;
+            border-radius: 18px;
+            aspect-ratio: 1.28;
+            background: rgba(20, 17, 13, 0.08);
+        }
+
+        .sector-thumb img {
+            height: 100%;
+            object-fit: cover;
+        }
+
         .sector-meta {
             display: flex;
             justify-content: space-between;
@@ -951,9 +1095,14 @@
                 max-width: 760px;
             }
 
+            .story-strip,
             .metric-band,
             .sector-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .story-tile--large {
+                grid-column: 1 / -1;
             }
         }
 
@@ -985,6 +1134,7 @@
             }
 
             .quick-stats,
+            .story-strip,
             .metric-band,
             .sector-grid,
             .feature-grid,
@@ -1001,6 +1151,14 @@
 
             .device-links {
                 display: none;
+            }
+
+            .story-content h3 {
+                font-size: 1.9rem;
+            }
+
+            .feature-image {
+                min-height: 188px;
             }
 
             .device-nav {
@@ -1163,6 +1321,35 @@
                 </article>
             </section>
 
+            <section class="story-strip reveal" style="animation-delay: 0.25s;" aria-label="Market imagery">
+                <article class="story-tile story-tile--large">
+                    <img src="https://images.unsplash.com/photo-1659039254844-f9eee10eeeab?auto=format&fit=crop&fm=jpg&q=80&w=1600" alt="Mumbai skyline at dusk">
+                    <div class="story-content">
+                        <span>Market Context</span>
+                        <h3>Mumbai remains the visual anchor of the board.</h3>
+                        <p>The landing page now carries a real Indian market backdrop instead of relying only on abstract gradients and mock surfaces.</p>
+                    </div>
+                </article>
+
+                <article class="story-tile">
+                    <img src="https://images.unsplash.com/photo-1634542984003-e0fb8e200e91?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt="Stock market charts on a large screen">
+                    <div class="story-content">
+                        <span>Trading Screens</span>
+                        <h3>Charts and signal flow.</h3>
+                        <p>Placed here to connect the editorial hero to the live-board treatment below.</p>
+                    </div>
+                </article>
+
+                <article class="story-tile">
+                    <img src="https://images.unsplash.com/photo-1574383379392-3a6255c69dcb?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt="Containers stacked at a cargo port">
+                    <div class="story-content">
+                        <span>Real Economy</span>
+                        <h3>Ports, freight, and industrial throughput.</h3>
+                        <p>Relevant to the logistics, utilities, energy, and infrastructure names across the tracker.</p>
+                    </div>
+                </article>
+            </section>
+
             <section id="market-board" class="reveal" style="animation-delay: 0.28s;">
                 <div class="section-heading">
                     <div>
@@ -1205,6 +1392,13 @@
                     <aside class="sidebar-stack">
                         <section class="card feature-panel">
                             <div class="eyebrow">Featured Company</div>
+                            <div class="feature-image">
+                                <img id="featured-image" src="https://images.unsplash.com/photo-1767890131766-9fa1b608365d?auto=format&fit=crop&fm=jpg&q=80&w=1200" alt="Industrial and infrastructure market visual">
+                                <div class="feature-image-copy">
+                                    <span id="featured-sector-label">Market Focus</span>
+                                    <strong id="featured-image-title">India market infrastructure</strong>
+                                </div>
+                            </div>
                             <h3 id="featured-name">-</h3>
                             <p id="featured-copy">-</p>
                             <div class="feature-grid" id="featured-grid"></div>
@@ -1303,6 +1497,34 @@
             { name: "Wipro Ltd", symbol: "WIPRO", price: 260.60, change: 0.52, sector: "IT Services" }
         ];
 
+        const imageLibrary = {
+            skyline: "https://images.unsplash.com/photo-1659039254844-f9eee10eeeab?auto=format&fit=crop&fm=jpg&q=80&w=1600",
+            trading: "https://images.unsplash.com/photo-1634542984003-e0fb8e200e91?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+            logistics: "https://images.unsplash.com/photo-1574383379392-3a6255c69dcb?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+            telecom: "https://images.unsplash.com/photo-1696716003454-4d6ece65eb19?auto=format&fit=crop&fm=jpg&q=80&w=1200",
+            industry: "https://images.unsplash.com/photo-1767890131766-9fa1b608365d?auto=format&fit=crop&fm=jpg&q=80&w=1200"
+        };
+
+        const sectorImageMap = {
+            Finance: imageLibrary.trading,
+            Telecom: imageLibrary.telecom,
+            Logistics: imageLibrary.logistics,
+            Construction: imageLibrary.industry,
+            Utilities: imageLibrary.industry,
+            Cement: imageLibrary.industry,
+            Metals: imageLibrary.industry,
+            Energy: imageLibrary.skyline,
+            "IT Services": imageLibrary.trading,
+            Automobile: imageLibrary.industry,
+            Jewellery: imageLibrary.skyline,
+            FMCG: imageLibrary.skyline,
+            "FMCG/Tobacco": imageLibrary.skyline,
+            Pharma: imageLibrary.trading,
+            Aerospace: imageLibrary.telecom,
+            Defence: imageLibrary.telecom,
+            Conglomerate: imageLibrary.skyline
+        };
+
         const currencyFormatter = new Intl.NumberFormat("en-IN", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
@@ -1366,6 +1588,10 @@
             return `INR ${currencyFormatter.format(value)}`;
         }
 
+        function getSectorImage(sector) {
+            return sectorImageMap[sector] || imageLibrary.skyline;
+        }
+
         function setText(id, value) {
             const element = document.getElementById(id);
 
@@ -1412,12 +1638,20 @@
         function renderFeaturePanel() {
             const grid = document.getElementById("featured-grid");
             const bars = document.getElementById("leader-bars");
+            const featureImage = document.getElementById("featured-image");
+            const featureLabel = document.getElementById("featured-sector-label");
+            const featureTitle = document.getElementById("featured-image-title");
 
             setText("featured-name", featuredCompany.name);
             setText(
                 "featured-copy",
                 `${featuredCompany.symbol} anchors the list as the highest-ranked company in the supplied market-cap sequence.`
             );
+
+            featureImage.src = getSectorImage(featuredCompany.sector);
+            featureImage.alt = `${featuredCompany.sector} market visual`;
+            featureLabel.textContent = `${featuredCompany.sector} Focus`;
+            featureTitle.textContent = `${featuredCompany.sector} sets the tone for the opening board`;
 
             grid.innerHTML = `
                 <article>
@@ -1489,6 +1723,9 @@
                     <article class="sector-card" style="--accent-soft:${accent.soft}; --accent-strong:${accent.strong};">
                         <span>${sector.count} names</span>
                         <h3>${sector.sector}</h3>
+                        <div class="sector-thumb">
+                            <img src="${getSectorImage(sector.sector)}" alt="${sector.sector} sector visual">
+                        </div>
                         <p>${sector.leader.symbol} is the strongest mover in this cluster, guiding the sector pulse for the current board.</p>
                         <div class="sector-meta">
                             <div>
