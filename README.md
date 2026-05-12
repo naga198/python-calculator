@@ -1,8 +1,35 @@
-# Python Finance & Scientific Calculator
+# 🚀 Python Finance & Scientific Calculator
 
 ![Finance Calculator Banner](assets/finance-calculator-banner.svg)
 
-An advanced Python calculator project featuring:
+![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)
+![Finance](https://img.shields.io/badge/Finance-AI-green?style=for-the-badge)
+![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red?style=for-the-badge&logo=streamlit)
+![CFA](https://img.shields.io/badge/CFA-Portfolio-orange?style=for-the-badge)
+
+---
+
+# 🌌 Dark Neon AI Theme
+
+A modern AI-themed finance calculator with:
+
+- 📈 Finance dashboards
+- 🤖 AI branding
+- 🧮 Scientific calculations
+- 💹 Investment analytics
+- 🚀 Streamlit interactive UI
+
+---
+
+# 🖼️ Project Screenshots
+
+## Dashboard Preview
+
+![Dashboard](assets/finance-calculator-banner.svg)
+
+---
+
+# ✨ Features
 
 ## Basic Operations
 - Addition
@@ -24,24 +51,49 @@ An advanced Python calculator project featuring:
 - CAGR Calculator
 - IRR Calculator
 
-## Testing
-Includes unit tests using Python unittest.
+---
 
-## Run
+# 🖥️ Interactive Streamlit UI
+
+Run the dashboard:
+
 ```bash
-python calculator.py
+streamlit run streamlit_app.py
 ```
 
-## Run Tests
+---
+
+# 🧪 Run Tests
+
 ```bash
 python test_calculator.py
 ```
 
-## Future Improvements
-- GUI using Tkinter
-- Voice calculator
-- Currency converter
-- Streamlit web app
-- Stock market integration
+---
 
-Created by Naga.
+# 🔮 Future AI Features
+
+- Voice-enabled calculator
+- AI financial assistant
+- Stock market prediction
+- NSE/BSE dashboard
+- PDF report generation
+- OpenAI integration
+
+---
+
+# 👨‍💻 GitHub Profile Integration
+
+### Created by Naga
+
+GitHub: https://github.com/naga198
+
+---
+
+# ⭐ Portfolio Project
+
+Perfect for:
+- Finance portfolio
+- CFA showcase
+- Python resume projects
+- AI + Finance applications
