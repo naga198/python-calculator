@@ -1,3 +1,45 @@
-# python-calculator
+# Python Finance & Scientific Calculator
 
-This is a very simple calculator program for learning how to write unit tests in Python. It contains a Calculator class (*calculator.py*) which perform 4 mathematic operations: add, subtract, multiply, and divide. You have to add unit test cases to test them in the file *test_calculator.py*. 
+An advanced Python calculator project featuring:
+
+## Basic Operations
+- Addition
+- Subtraction
+- Multiplication
+- Division
+- Modulo
+
+## Scientific Features
+- Power calculations
+- Square root
+- Percentage calculator
+
+## Finance Features
+- Simple Interest
+- Compound Interest
+- EMI Calculator
+- SIP Returns Calculator
+- CAGR Calculator
+- IRR Calculator
+
+## Testing
+Includes unit tests using Python unittest.
+
+## Run
+```bash
+python calculator.py
+```
+
+## Run Tests
+```bash
+python test_calculator.py
+```
+
+## Future Improvements
+- GUI using Tkinter
+- Voice calculator
+- Currency converter
+- Streamlit web app
+- Stock market integration
+
+Created by Naga.
