@@ -1,3 +1,5 @@
+import math
+
 class Calculator:
     def add(self, a, b):
         return a + b
@@ -7,78 +9,61 @@ class Calculator:
 
     def multiply(self, a, b):
         result = 0
-        for i in range(b):
-            result = self.add(result, a)
-        return result
+        for i in range(abs(b)):
+            result = self.add(result, abs(a))
+        return result if (a >= 0 and b >= 0) or (a < 0 and b < 0) else -result
 
     def divide(self, a, b):
-        result = 0
-        while a >= b:
-            a = self.subtract(a, b)
-            result += 1
-        return result
+        if b == 0:
+            raise ValueError('Cannot divide by zero')
+        return a / b
     
     def modulo(self, a, b):
-        while a >= b:
-            a = a - b
-        return a
+        return a % b
+
+    def power(self, base, exponent):
+        return base ** exponent
+
+    def square_root(self, number):
+        if number < 0:
+            raise ValueError('Cannot calculate square root of negative number')
+        return math.sqrt(number)
+
+    def percentage(self, value, total):
+        return (value / total) * 100
 
     def simple_interest(self, principal, rate, time):
-        """
-        Calculate simple interest.
-        SI = (P × R × T) / 100
-        
-        Args:
-            principal: Initial amount
-            rate: Interest rate per annum (%)
-            time: Time period in years
-            
-        Returns:
-            Simple interest amount
-        """
         return (principal * rate * time) / 100
     
     def compound_interest(self, principal, rate, time, compounds_per_year=1):
-        """
-        Calculate compound interest.
-        A = P(1 + r/n)^(nt)
-        CI = A - P
-        
-        Args:
-            principal: Initial amount
-            rate: Interest rate per annum (%)
-            time: Time period in years
-            compounds_per_year: Number of times interest compounds per year (default: 1)
-            
-        Returns:
-            Compound interest amount
-        """
         rate_decimal = rate / 100
         amount = principal * ((1 + rate_decimal / compounds_per_year) ** (compounds_per_year * time))
         return amount - principal
+
+    def emi(self, principal, annual_rate, tenure_years):
+        monthly_rate = annual_rate / (12 * 100)
+        months = tenure_years * 12
+        emi_value = principal * monthly_rate * ((1 + monthly_rate) ** months)
+        emi_value /= (((1 + monthly_rate) ** months) - 1)
+        return round(emi_value, 2)
+
+    def sip_returns(self, monthly_investment, annual_rate, years):
+        monthly_rate = annual_rate / (12 * 100)
+        months = years * 12
+        future_value = monthly_investment * (((1 + monthly_rate) ** months - 1) / monthly_rate) * (1 + monthly_rate)
+        return round(future_value, 2)
+
+    def cagr(self, beginning_value, ending_value, years):
+        return round((((ending_value / beginning_value) ** (1 / years)) - 1) * 100, 2)
     
     def irr(self, cash_flows, guess=0.1, max_iterations=100, tolerance=1e-6):
-        """
-        Calculate Internal Rate of Return (IRR) using Newton-Raphson method.
-        
-        Args:
-            cash_flows: List of cash flows (first is typically negative investment)
-            guess: Initial guess for IRR (default: 0.1 or 10%)
-            max_iterations: Maximum iterations for convergence
-            tolerance: Convergence tolerance
-            
-        Returns:
-            Internal Rate of Return as a decimal (multiply by 100 for percentage)
-        """
         def npv(rate, flows):
-            """Calculate Net Present Value at given rate"""
             npv_value = 0
             for t, cf in enumerate(flows):
                 npv_value += cf / ((1 + rate) ** t)
             return npv_value
         
         def npv_derivative(rate, flows):
-            """Calculate derivative of NPV (for Newton-Raphson)"""
             derivative = 0
             for t, cf in enumerate(flows):
                 if t > 0:
@@ -99,12 +84,11 @@ class Calculator:
         
         return rate
 
-# Example usage:
-if __name__ == "__main__":
+if __name__ == '__main__':
     calc = Calculator()
-    print("This is a simple calculator class!")
-    print("Example: addition: ", calc.add(1, 2))
-    print("Example: subtraction: ", calc.subtract(4, 2))
-    print("Example: multiplication: ", calc.multiply(2, 3))
-    print("Example: division: ", calc.divide(10, 2))
-    print("Example: modulo: ", calc.modulo(10, 3))
+    print('Advanced Finance & Scientific Calculator')
+    print('Addition:', calc.add(10, 5))
+    print('Power:', calc.power(2, 5))
+    print('Square Root:', calc.square_root(64))
+    print('EMI:', calc.emi(500000, 8.5, 10))
+    print('SIP Returns:', calc.sip_returns(5000, 12, 10))
