@@ -1,0 +1,17 @@
+<svg width="1200" height="400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  <text x="60" y="140" font-size="54" fill="white" font-family="Arial" font-weight="bold">Python Finance &amp; Scientific Calculator</text>
+  <text x="60" y="210" font-size="28" fill="#cbd5e1" font-family="Arial">Advanced Python Project for Finance, CFA &amp; Data Analysis</text>
+  <rect x="60" y="260" width="180" height="60" rx="12" fill="#22c55e"/>
+  <text x="95" y="300" font-size="28" fill="white" font-family="Arial">Python</text>
+  <rect x="270" y="260" width="180" height="60" rx="12" fill="#3b82f6"/>
+  <text x="325" y="300" font-size="28" fill="white" font-family="Arial">Finance</text>
+  <rect x="480" y="260" width="180" height="60" rx="12" fill="#f59e0b"/>
+  <text x="555" y="300" font-size="28" fill="white" font-family="Arial">CFA</text>
+</svg>
