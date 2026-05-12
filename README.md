@@ -1,5 +1,7 @@
 # Python Finance & Scientific Calculator
 
+![Finance Calculator Banner](assets/finance-calculator-banner.svg)
+
 An advanced Python calculator project featuring:
 
 ## Basic Operations
